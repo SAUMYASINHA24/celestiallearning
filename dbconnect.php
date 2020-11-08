@@ -38,11 +38,4 @@
             return $this->_connection;
         }
     }
-
-    $db = Database::getInstance();
-    $mysqli = $db->getConnection();
-    $sql_query = "SHOW tables";
-    $result = $mysqli->query($sql_query);
-    
-    echo "Result : $result";
 ?>
