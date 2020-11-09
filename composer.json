@@ -1,9 +1,6 @@
 {
     "require": {
-<<<<<<< HEAD
         "phpmailer/phpmailer": "^6.1"
-=======
         "twig/twig": "^2.0"
->>>>>>> 1884be1a83fb1a7566689ca659b4019c44d25144
     }
 }
