@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85e07ea1e3620c3da1942492052d7d21",
+    "content-hash": "96ccc64bc959149fc3f67e23a4ddde70",
     "packages": [
         {
             "name": "phpmailer/phpmailer",
@@ -78,8 +78,7 @@
                 }
             ],
             "time": "2020-10-09T14:55:58+00:00"
-    "content-hash": "843b04df5fdfe76251025001d66e0fd2",
-    "packages": [
+        },
         {
             "name": "symfony/polyfill-ctype",
             "version": "v1.20.0",

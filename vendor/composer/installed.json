@@ -1,7 +1,6 @@
 {
     "packages": [
         {
-<<<<<<< HEAD
             "name": "phpmailer/phpmailer",
             "version": "v6.1.8",
             "version_normalized": "6.1.8.0",
@@ -76,7 +75,8 @@
                 }
             ],
             "install-path": "../phpmailer/phpmailer"
-=======
+        },
+        {
             "name": "symfony/polyfill-ctype",
             "version": "v1.20.0",
             "version_normalized": "1.20.0.0",
@@ -322,7 +322,6 @@
                 }
             ],
             "install-path": "../twig/twig"
->>>>>>> 1884be1a83fb1a7566689ca659b4019c44d25144
         }
     ],
     "dev": true,

@@ -1,0 +1,6 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+/vendor
+composer.json
+composer.lock

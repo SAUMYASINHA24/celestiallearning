@@ -19,11 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-<<<<<<< HEAD
-    'reference' => '3ce1af2ec009238aaa0e83a3365d73528ddccd07',
-=======
-    'reference' => '46f0247919694a8b1e32bdb765a9ef013b0bdf43',
->>>>>>> 1884be1a83fb1a7566689ca659b4019c44d25144
+    'reference' => 'dc5c5810bad52f8ced6b43aea7c19b5d306be6dd',
     'name' => '__root__',
   ),
   'versions' => 
@@ -35,8 +31,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-<<<<<<< HEAD
-      'reference' => '3ce1af2ec009238aaa0e83a3365d73528ddccd07',
+      'reference' => 'dc5c5810bad52f8ced6b43aea7c19b5d306be6dd',
     ),
     'phpmailer/phpmailer' => 
     array (
@@ -46,8 +41,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '917ab212fa00dc6eacbb26e8bc387ebe40993bc1',
-=======
-      'reference' => '46f0247919694a8b1e32bdb765a9ef013b0bdf43',
     ),
     'symfony/polyfill-ctype' => 
     array (
@@ -75,7 +68,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '5eb9ac5dfdd20c3f59495c22841adc5da980d312',
->>>>>>> 1884be1a83fb1a7566689ca659b4019c44d25144
     ),
   ),
 );
