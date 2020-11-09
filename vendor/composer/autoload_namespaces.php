@@ -6,4 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+<<<<<<< HEAD
+=======
+    'Twig_' => array($vendorDir . '/twig/twig/lib'),
+>>>>>>> 1884be1a83fb1a7566689ca659b4019c44d25144
 );

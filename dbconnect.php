@@ -37,5 +37,5 @@
         public function getConnection() {
             return $this->_connection;
         }
-    }
+    }        
 ?>
