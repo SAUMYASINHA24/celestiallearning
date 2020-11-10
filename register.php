@@ -9,7 +9,7 @@ $loader = new FilesystemLoader(__DIR__ . '/templates');
 $twig = new Environment($loader);
 
 $errors = array();
-$password = $_POST["password"];
+$password = $_POST['password'];
 // Fields are empty.
 if(!isset($_POST['username'],$_POST['email'],$_POST['password'],$_POST['confirm_password']))
 {
@@ -38,8 +38,8 @@ else
     $query->bind_param('s',$emailid);
     $emailid = $_POST["email"];
     $query->execute();
-    $result1 = $query->get_result();
 
+    $result1 = $query->get_result();
     $query = $mysql->prepare("SELECT ID FROM Subscriber WHERE Username = ?");   //Username already taken verification
     $query->bind_param('s',$username);
     $username = $_POST["username"];
@@ -74,11 +74,12 @@ else
             $email = $_POST["email"];
             $password = password_hash($_POST["password"], 2);
             $status = "Inactive";
-            sendMail($email, $username);
+            echo "Sending Mail.";
+            sendActivationMail($email, $username);
             $stmt->execute();
-            echo $twig->render('register.html.twig', ['activation_link' => "You have registered and the activation mail is sent to your email. Click the activation link to activate you account."]);                                      
+            header('Location: dashboard.php');
+            //echo $twig->render('register.html.twig', ['activation_link' => "You have registered and the activation mail is sent to your email. Click the activation link to activate you account."]);                                      
         }
     }
 }
-
 ?>
