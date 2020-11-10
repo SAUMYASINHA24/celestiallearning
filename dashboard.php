@@ -1,3 +1,3 @@
 <?php
-echo "You are successfully registered.";
+echo "You are successfully registered/login.";
 ?>

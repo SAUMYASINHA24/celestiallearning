@@ -1,5 +1,11 @@
 <?php
     include "dbconnect.php";
+
+    require __DIR__ . '/vendor/autoload.php';
+    use Twig\Environment;
+    use Twig\Loader\FilesystemLoader;
+    $loader = new FilesystemLoader(__DIR__ . '/templates');
+    $twig = new Environment($loader);
     if(isset($_POST['submit']))
     {
         $db = Database::getInstance();
@@ -21,16 +27,16 @@
                 $password = $_POST['password'];
                 if(password_verify($password, $hash))
                 {
-                    echo "Login successfully.";
+                    header('Location: dashboard.php');
                 }
                 else
                 {
-                    echo "Incorrect username or password.";
+                    echo $twig->render('login.html.twig', ['invalid_login' => "Incorrect username or password."]);
                 }
             }
             else
             {
-                echo "Incorrect username or password.";
+                echo $twig->render('login.html.twig', ['invalid_login' => "Incorrect username or password."]);
             }
         }
 

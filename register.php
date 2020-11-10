@@ -76,7 +76,7 @@ else
             $status = "Inactive";
             sendMail($email, $username);
             $stmt->execute();
-            header('Location: dashboard.php');                                      
+            echo $twig->render('register.html.twig', ['activation_link' => "You have registered and the activation mail is sent to your email. Click the activation link to activate you account."]);                                      
         }
     }
 }
