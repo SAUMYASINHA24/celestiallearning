@@ -2,7 +2,8 @@
     <head>
         <script type="text/javascript" src="register.js"></script>
     </head>
-    <body>      
+    <body>   
+        <h5 style="color:green;"> {{ activation_link }} </h5> 
         <form action = "register.php" name = "register_form" method = "POST" onsubmit="return validation()">
             Enter Username <input type = "text" name = "username" ><br><br>
             <h5 style="color:red;"> {{ errors.username_error }} </h5>
