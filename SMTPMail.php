@@ -19,14 +19,16 @@
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
             $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
             // goes in databse
-            $timestamp = date("Y-m-d h:i:s", strtotime('1 hour'));
-            $hash = md5($timestamp);
-            $pin = rand(1000,9000);
+            
             $db = Database::getInstance();
             $conn = $db->getConnection();
 
             $stmt = $conn->prepare("INSERT INTO Verify VALUES(?,?,?,?)");
+            
             $stmt->bind_param("ssss",$hash, $pin, $timestamp, $e);
+            $hash = md5($timestamp);
+            $pin = rand(1000,9000);
+            $timestamp = date("Y-m-d H:i:s", strtotime('1 hour'));  
             $e = $email;
             $stmt->execute();
             //-------------------------
