@@ -9,6 +9,7 @@ function validation()
     
     var email = document.getElementsByName("email")[0].value;
 
+    
     var emailpattern = /^[a-zA-Z0-9.-_]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;   //Regex for email validation
     
     if(uname.length==0)
@@ -18,6 +19,7 @@ function validation()
        return false;   
     }
 
+    
     if(!emailpattern.test(email))
     {
         alert("Invalid Email id");
