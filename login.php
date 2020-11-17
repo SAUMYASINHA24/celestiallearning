@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include "dbconnect.php";
 
     require __DIR__ . '/vendor/autoload.php';
@@ -29,6 +30,7 @@
                 if(password_verify($password, $hash))
                 {
                     //echo "i am in part";
+                    $_SESSION['email'] = $email;
                     $stmt = $conn->prepare("SELECT AccountStatus FROM Subscriber WHERE Email = ?");
                     $stmt->bind_param("s", $email);
                     $email = $_POST['email'];
