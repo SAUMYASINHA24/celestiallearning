@@ -14,8 +14,8 @@
             $mail->isSMTP();                                            // Send using SMTP
             $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $mail->Username   = 'celestial.learning2020@gmail.com';                     // SMTP username
-            $mail->Password   = 'Celestial@2020';                               // SMTP password
+            $mail->Username   = getenv("EMAIL");                     // SMTP username
+            $mail->Password   = getenv("PASSWORD");                               // SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
             $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
             // goes in databse
@@ -26,7 +26,7 @@
             $stmt = $conn->prepare("INSERT INTO Verify VALUES(?,?,?,?)");
             
             $stmt->bind_param("ssss",$hash, $pin, $timestamp, $e);
-            $hash = md5($timestamp);
+            $hash = md5($email . $timestamp);
             $pin = rand(1000,9000);
             $timestamp = date("Y-m-d H:i:s", strtotime('1 hour'));  
             $e = $email;
