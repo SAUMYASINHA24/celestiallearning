@@ -1,3 +1,5 @@
-<?php
-echo "You are successfully registered/login.";
-?>
+<html> 
+    <body>
+        <a href="profile.php">Profile</a>
+    </body>
+</html>
