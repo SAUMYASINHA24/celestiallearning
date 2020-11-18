@@ -23,13 +23,13 @@
     if($rowcnt > 0)
     {
         $query = $mysql->prepare("UPDATE SubscriberProfile SET FirstName=?,MiddleName=?,LastName=?,PhNum=?,LinkedInURL=?,TwitterURL=?,HigherEducation=?,AreaOfInterest=?  WHERE ID=?");
-        $query->bind_param("sssisssss",$FirstName,$MiddleName,$LastName,$phn,$LinkedInURL,$TwitterURL,$HigherEducation,$AreaOfInterest,$id);
+        $query->bind_param("sssssssss",$FirstName,$MiddleName,$LastName,$phn,$LinkedInURL,$TwitterURL,$HigherEducation,$AreaOfInterest,$id);
         $query->execute();
     }
     else
     {
         $query = $mysql->prepare("INSERT INTO SubscriberProfile VALUES(?,?,?,?,?,?,?,?,?)");
-        $query->bind_param("ssssissss",$id,$FirstName,$MiddleName,$LastName,$phn,$LinkedInURL,$TwitterURL,$HigherEducation,$AreaOfInterest);
+        $query->bind_param("sssssssss",$id,$FirstName,$MiddleName,$LastName,$phn,$LinkedInURL,$TwitterURL,$HigherEducation,$AreaOfInterest);
         $query->execute();
     }
 

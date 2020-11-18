@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+require __DIR__ . '/vendor/autoload.php';
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+$loader = new FilesystemLoader(__DIR__ . '/templates');
+$twig = new Environment($loader);
+?>
+
 <html>
 <head>
 <title>Profile Page</title>
@@ -8,6 +16,7 @@
 <h1> Profile Page</h1>
 
 <?php
+$profile = array();
 include('dbconnect.php');
 $db = Database::getInstance();
 $mysql = $db->getConnection();
@@ -35,74 +44,23 @@ foreach($result1 as $row1)
 
 }
 
-
-if($row_count1>0)
+if($row_count1>0) //update
 {
-?>
-<form action=update.php method=post>
-<label for="ID">ID:</label>
-<input type="text" id="ID" name="ID" readonly value="<?php echo $row['ID'];?>"><br><br>
-
-<label for="First Name">First Name:</label>
-<input type="text" id="FirstNmae" name="FirstName" value="<?php echo $row1['FirstName'];?>"><br><br>
-
-<label for="MiddleName">Middle Name:</label>
-<input type="text" id="MiddleName" name="MiddleName" value="<?php echo $row1['MiddleName'];?>"><br><br>
-
-<label for="LastName">Last Name:</label>
-<input type="text" id="LastName" name="LastName" value="<?php echo $row1['LastName'];?>"><br><br>
-
-<label for="PhNum">Phone Num:</label>
-<input type="text" id="PhNum" name="PhNum" value="<?php echo $row1['PhNum'];?>"><br><br>
-
-<label for="LinkedInURL">LinkedIn URL:</label>
-<input type="text" id="LinkedInURL" name="LinkedInURL" value="<?php echo $row1['LinkedInURL'];?>"><br><br>
-
-<label for="TwitterURL">Twitter URL:</label>
-<input type="text" id="TwitterURL" name="TwitterURL" value="<?php echo $row1['TwitterURL'];?>"><br><br>
-
-<label for="HigherEducation">Higher Education:</label>
-<input type="text" id="HigherEducation" name="HigherEducation" value="<?php echo $row1['HigherEducation'];?>"><br><br>
-
-<label for="AreaOfInterest">Area Of Interest:</label>
-<input type="text" id="AreaOfInterest" name="AreaOfInterest" value="<?php echo $row1['AreaOfInterest'];?>"><br><br>
-<input type="submit" value="Update">
-</form>
-<?php 
+    $profile['ID'] = $row['ID'];
+    $profile['FirstName'] = $row1['FirstName'];
+    $profile['MiddleName'] = $row1['MiddleName'];
+    $profile['LastName'] = $row1['LastName'];
+    $profile['PhNum'] = $row1['PhNum'];
+    $profile['LinkedInURL'] = $row1['LinkedInURL'];
+    $profile['TwitterURL'] = $row1['TwitterURL'];
+    $profile['HigherEducation'] = $row1['HigherEducation'];
+    $profile['AreaOfInterest'] = $row1['AreaOfInterest'];
+    echo $twig->render('profile.html.twig',array('profile'=>$profile));
 }
 else
 {
-?>
-<form action=update.php method=post>
-<label for="ID">ID:</label>
-<input type="text" id="ID" name="ID" readonly value="<?php echo $row['ID'];?>"><br><br>
-
-<label for="First Name">First Name:</label>
-<input type="text" id="FirstNmae" name="FirstName" ><br><br>
-
-<label for="MiddleName">Middle Name:</label>
-<input type="text" id="MiddleName" name="MiddleName" ><br><br>
-
-<label for="LastName">Last Name:</label>
-<input type="text" id="LastName" name="LastName" ><br><br>
-
-<label for="PhNum">Phone Num:</label>
-<input type="text" id="PhNum" name="PhNum" ><br><br>
-
-<label for="LinkedInURL">LinkedIn URL:</label>
-<input type="text" id="LinkedInURL" name="LinkedInURL" ><br><br>
-
-<label for="TwitterURL">Twitter URL:</label>
-<input type="text" id="TwitterURL" name="TwitterURL" ><br><br>
-
-<label for="HigherEducation">Higher Education:</label>
-<input type="text" id="HigherEducation" name="HigherEducation"><br><br>
-
-<label for="AreaOfInterest">Area Of Interest:</label>
-<input type="text" id="AreaOfInterest" name="AreaOfInterest" ><br><br>
-<input type="submit" value="Update">
-</form>
-<?php
+    $profile['ID'] = $row['ID'];
+    echo $twig->render('profile.html.twig',array('profile'=>$profile));
 }
 ?>
 </body>
