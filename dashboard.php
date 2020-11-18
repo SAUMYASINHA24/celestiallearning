@@ -8,7 +8,6 @@ echo "You are successfully registered/login.";
 </title></title>
 </head>
 <body>
-
 <a href="profile.php">Profile</a>
 </body>
 </html>
