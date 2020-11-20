@@ -73,7 +73,7 @@ else
             $username = $_POST["username"];
             $ID = password_hash($username,1);
             $email = $_POST["email"];
-            $password = password_hash($_POST["password"], 2);
+            $password = password_hash($_POST["password"], 1);
             $status = "Inactive";
             //echo "Sending Mail.";
             sendActivationMail($email, $username);
