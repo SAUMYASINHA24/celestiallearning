@@ -12,7 +12,7 @@
         $db = Database::getInstance();
         $conn = $db->getConnection();
 
-        $stmt = $conn->prepare("SELECT Password FROM Subscriber WHERE Email = ?");
+        $stmt = $conn->prepare("SELECT LoginPassword FROM Subscriber WHERE Email = ?");
         $stmt->bind_param("s", $email);
         $email = $_POST['email'];
         $stmt->execute();
@@ -25,7 +25,7 @@
             if ($row_count == 1)
             {
                 $row = $result->fetch_assoc();
-                $hash = $row['Password'];
+                $hash = $row['LoginPassword'];
                 $password = $_POST['password'];
                 if(password_verify($password, $hash))
                 {
@@ -46,7 +46,19 @@
                         //echo $status1;
                         if($status1=="Active")
                         {
-                            header('Location: dashboard.php');
+                            try
+                            {
+                                $stmt = $conn->prepare("DELETE FROM Verify WHERE Email = ?"); 
+                                $stmt->bind_param("s", $email);
+                                $stmt->execute(); 
+                                // INSERT VALUE TO SUBSCRIBERPROFILE TABLE   
+                                header('Location: dashboard.php');    
+                            }
+                            catch(Exception $e)
+                            {
+                                header('Location: dashboard.php');
+                            }
+                            
                         }
                         else
                         {

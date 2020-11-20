@@ -2,7 +2,6 @@
     class Database {
         private $_connection;
         private static $_instance; //The single instance
-        
     
         /*
         Get an instance of the Database
@@ -17,8 +16,8 @@
     
         // Constructor
         private function __construct() {
-            $this->_connection = new mysqli($this->_host, $this->_username, 
-                $this->_password, $this->_database);
+            $this->_connection = new mysqli(getenv("DB_HOST"), getenv("DB_USER"), 
+                getenv("DB_PASSWORD"), getenv("DB_NAME"));
         
             // Error handling
             if(mysqli_connect_error()) {
@@ -34,5 +33,5 @@
         public function getConnection() {
             return $this->_connection;
         }
-    }        
+    }  
 ?>

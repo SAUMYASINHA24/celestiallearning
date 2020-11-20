@@ -66,11 +66,12 @@ else
             echo $twig->render('register.html.twig', array('errors' => $errors));
         }
         else
-        {      
+        {    
+              
             $stmt = $mysql->prepare("INSERT INTO Subscriber values(?,?,?,?,?)");      // Inserting values into database after every verification
             $stmt->bind_param("sssss",$ID,$username,$email,$password, $status);
-            $ID = $_POST["username"];
             $username = $_POST["username"];
+            $ID = password_hash($username,1);
             $email = $_POST["email"];
             $password = password_hash($_POST["password"], 1);
             $status = "Inactive";
