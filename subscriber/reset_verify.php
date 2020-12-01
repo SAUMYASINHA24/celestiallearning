@@ -1,6 +1,6 @@
 <?php
 
-    include "dbconnect.php";
+    include "/var/www/celestiallearning/dbconnect.php";
     if(!isset($_POST['new_pass'],$_POST['confirm_pass']))
     {
         $errors['not_set_error'] = 'Please enter password.';

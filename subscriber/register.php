@@ -1,11 +1,12 @@
-<?php 
-include "dbconnect.php";  // Include Database Connection file
-include "SMTPMail.php";
+<?php
+include "/var/www/celestiallearning/dbconnect.php";  // Include Database Connection file
+include "/var/www/celestiallearning/SMTPMail.php";
+
 /* Twig implementation*/
-require __DIR__ . '/vendor/autoload.php';
+require '/var/www/celestiallearning/vendor/autoload.php';
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-$loader = new FilesystemLoader(__DIR__ . '/templates');
+$loader = new FilesystemLoader('/var/www/celestiallearning/templates');
 $twig = new Environment($loader);
 
 $errors = array();
@@ -31,15 +32,17 @@ else if(strlen($password)>72)
 
 else
 {
+    
     $db = Database::getInstance();      // Creating instance of Database
     $mysql = $db->getConnection();      // Create Connection 
 
-    $query = $mysql->prepare("SELECT ID FROM Subscriber WHERE Email = ?");      // Email already registered verification
+    
+    $query = $mysql->prepare("SELECT ID FROM Subscriber WHERE Email = ?");     // Email already registered verification
     $query->bind_param('s',$emailid);
     $emailid = $_POST["email"];
     $query->execute();
-
     $result1 = $query->get_result();
+    
     $query = $mysql->prepare("SELECT ID FROM Subscriber WHERE Username = ?");   //Username already taken verification
     $query->bind_param('s',$username);
     $username = $_POST["username"];
@@ -51,6 +54,8 @@ else
         $row_count1 = mysqli_num_rows($result1);
         $row_count2 = mysqli_num_rows($result2);
         
+        echo $row_count1;
+        echo $row_count2;
         if($row_count1>0)
         {
             
@@ -75,7 +80,7 @@ else
             $email = $_POST["email"];
             $password = password_hash($_POST["password"], 1);
             $status = "Inactive";
-            //echo "Sending Mail.";
+            echo "Sending Mail.";
             sendActivationMail($email, $username);
             $stmt->execute();
             //header('Location: dashboard.php');
