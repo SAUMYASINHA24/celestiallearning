@@ -2,10 +2,10 @@
     class Database {
         private $_connection;
         private static $_instance; //The single instance
-        private $_host = "localhost";
-        private $_username = "web";
-        private $_password = "CelLe@rn101";
-        private $_database = "celestiallearning";
+        private $_host = "";
+        private $_username = "";
+        private $_password = "";
+        private $_database = "";
     
         /*
         Get an instance of the Database
