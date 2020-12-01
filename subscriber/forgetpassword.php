@@ -1,11 +1,11 @@
 <?php
-    include "dbconnect.php";
-    include "SMTPMail.php";
+    include "/var/www/celestiallearning/dbconnect.php";
+    include "/var/www/celestiallearning/SMTPMail.php";
     /* Twig implementation*/
-    require __DIR__ . '/vendor/autoload.php';
+    require '/var/www/celestiallearning/vendor/autoload.php';
     use Twig\Environment;
     use Twig\Loader\FilesystemLoader;
-    $loader = new FilesystemLoader(__DIR__ . '/templates');
+    $loader = new FilesystemLoader('/var/www/celestiallearning/templates');
     $twig = new Environment($loader);
 
     $errors = array();

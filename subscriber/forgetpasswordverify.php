@@ -1,5 +1,5 @@
 <?php
-	include "dbconnect.php";
+	include "/var/www/celestiallearning/dbconnect.php";
     $db = Database::getInstance();      // Creating instance of Database
     $conn = $db->getConnection();
    
@@ -13,13 +13,9 @@
         $result = $stmt->get_result();
         $t = $result->fetch_assoc();
         if($t)
-        {    
-            $stmt = $conn->prepare("UPDATE Subscriber SET AccountStatus = ? WHERE Email = ?");
-            $stmt->bind_param("ss", $status, $email);
-            $status = "Active";
+        { 
             $email = $t['Email'];
-            $stmt->execute();    
-            header('Location: login.html'); 
+            header('Location: reset_password.php?t1='.$email);
         }
         else
         {
@@ -62,6 +58,7 @@
             if($t)
             {            
                 $old_time = date("Y-m-d H:i:s", strtotime($t['ExpiryTime'])); 
+                echo $old_time;
                 if($old_time > date("Y-m-d H:i:s"))
                 {
 ?>
