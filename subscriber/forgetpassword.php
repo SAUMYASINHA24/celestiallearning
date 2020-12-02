@@ -1,6 +1,6 @@
 <?php
-    include "/var/www/celestiallearning/dbconnect.php";
-    include "/var/www/celestiallearning/SMTPMail.php";
+    include "/var/www/celestiallearning/utilities/dbconnect.php";
+    include "/var/www/celestiallearning/utilities/SMTPMail.php";
     /* Twig implementation*/
     require '/var/www/celestiallearning/vendor/autoload.php';
     use Twig\Environment;

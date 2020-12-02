@@ -1,4 +1,5 @@
 <?php 
+include('/var/www/celestiallearning/utilities/dbconnect.php');
 session_start(); 
 require '/var/www/celestiallearning/vendor/autoload.php';
 use Twig\Environment;
@@ -17,7 +18,6 @@ $twig = new Environment($loader);
 
 <?php
 $profile = array();
-include('/var/www/celestiallearning/dbconnect.php');
 $db = Database::getInstance();
 $mysql = $db->getConnection();
 $email = $_SESSION['email'];
@@ -47,6 +47,7 @@ foreach($result1 as $row1)
 if($row_count1>0) //update
 {
     $profile['ID'] = $row['ID'];
+    $profile['Email'] = $email;
     $profile['FirstName'] = $row1['FirstName'];
     $profile['MiddleName'] = $row1['MiddleName'];
     $profile['LastName'] = $row1['LastName'];
@@ -60,6 +61,7 @@ if($row_count1>0) //update
 else
 {
     $profile['ID'] = $row['ID'];
+    $profile['Email'] = $email;
     echo $twig->render('profile.html.twig',array('profile'=>$profile));
 }
 ?>

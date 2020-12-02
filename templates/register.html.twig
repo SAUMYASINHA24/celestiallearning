@@ -1,10 +1,11 @@
 <html>
     <head>
-        <script type="text/javascript" src="subscriber/register.js"></script>
+        <title>{{ title }}</title>
+        <script type="text/javascript" src="js/register.js"></script>
     </head>
     <body>   
         <h5 style="color:green;"> {{ activation_link }} </h5> 
-        <form action = "subscriber/register.php" name = "register_form" method = "POST" onsubmit="return validation()">
+        <form action = "/var/www/celestiallearning/subscriber/register.php" name = "register_form" method = "POST" onsubmit="return validation()">
             Enter Username <input type = "text" name = "username" ><br><br>
             <h5 style="color:red;"> {{ errors.username_error }} </h5>
             Enter Email ID <input type = "text" name = "email" ><br><br>

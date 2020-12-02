@@ -10,7 +10,7 @@
     $HigherEducation = $_POST['HigherEducation'];
     $AreaOfInterest = $_POST['AreaOfInterest'];
 
-    include('/var/www/celestiallearning/dbconnect.php');
+    include('/var/www/celestiallearning/utilities/dbconnect.php');
     $db = Database::getInstance();
     $mysql = $db->getConnection();
 

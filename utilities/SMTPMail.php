@@ -2,12 +2,9 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
-    
     function sendActivationMail($email, $username){
-        require 'vendor/autoload.php';
-
+        require "/var/www/celestiallearning/vendor/autoload.php";
         $mail = new PHPMailer(true);
-
         try {
             //Server settings
             $mail->SMTPDebug = 0;                      // Enable verbose debug output
@@ -108,6 +105,4 @@
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
-    
-    //sendActivationMail("vishalkale151071@gmail.com", "vishal");
 ?>

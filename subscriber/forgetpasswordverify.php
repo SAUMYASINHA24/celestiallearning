@@ -1,5 +1,5 @@
 <?php
-	include "/var/www/celestiallearning/dbconnect.php";
+	include "/var/www/celestiallearning/utilities/dbconnect.php";
     $db = Database::getInstance();      // Creating instance of Database
     $conn = $db->getConnection();
    
