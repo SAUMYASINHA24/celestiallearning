@@ -2,7 +2,7 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
-    function sendActivationMail($email, $username){
+    function sendActivationMail($email, $username, $role="subscriber"){
         require "/var/www/celestiallearning/vendor/autoload.php";
         $mail = new PHPMailer(true);
         try {
@@ -30,7 +30,7 @@
             $e = $email;
             $stmt->execute();
             //-------------------------
-            $actual_link = "http://www.celestiallearning.com/subscriber/verify.php?t=" . $hash;
+            $actual_link = "http://www.celestiallearning.com/". $role ."/verify.php?t=" . $hash;
             //Recipients
             $mail->setFrom('noreply@celestiallearning.com', 'Celestial Learning');
             $mail->addAddress($email, $username);     // Add a recipient

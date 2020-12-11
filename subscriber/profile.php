@@ -56,13 +56,13 @@ if($row_count1>0) //update
     $profile['TwitterURL'] = $row1['TwitterURL'];
     $profile['HigherEducation'] = $row1['HigherEducation'];
     $profile['AreaOfInterest'] = $row1['AreaOfInterest'];
-    echo $twig->render('profile.html.twig',array('profile'=>$profile));
+    echo $twig->render('subscriber/profile.html.twig',array('profile'=>$profile));
 }
 else
 {
     $profile['ID'] = $row['ID'];
     $profile['Email'] = $email;
-    echo $twig->render('profile.html.twig',array('profile'=>$profile));
+    echo $twig->render('subscriber/profile.html.twig',array('profile'=>$profile));
 }
 ?>
 </body>

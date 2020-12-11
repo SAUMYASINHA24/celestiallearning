@@ -12,13 +12,13 @@
     if(!isset($_POST["registered_email"]))
     {
         $errors['not_set_error'] = 'Please enter email id to proceed further.';
-        $twig->render('forgetpassword.html.twig', array('errors'=> $errors));
+        $twig->render('subscriber/forgetpassword.html.twig', array('errors'=> $errors));
     }
 
     else if(empty($_POST['registered_email']))
     {    
         $errors['empty_error'] = 'Please enter email id to proceed further.';
-        $twig->render('forgetpassword.html.twig', array('errors'=> $errors));   
+        $twig->render('subscriber/forgetpassword.html.twig', array('errors'=> $errors));   
     }
     else
     {
@@ -35,12 +35,12 @@
             if($row_count>0)
             {
                 sendForgetPasswordLink($emailid);
-                echo $twig->render('forgetpassword.html.twig', ['activation_link' => "An OTP has been sent on your registered mail id. Click the link to reset your password."]);                                      
+                echo $twig->render('subscriber/forgetpassword.html.twig', ['activation_link' => "An OTP has been sent on your registered mail id. Click the link to reset your password."]);                                      
             }
             else
             {
                 $errors['not_registered'] = '* You are not registered.';
-                echo $twig->render('forgetpassword.html.twig', array('errors'=> $errors)); 
+                echo $twig->render('subscriber/forgetpassword.html.twig', array('errors'=> $errors)); 
             }
         }
         

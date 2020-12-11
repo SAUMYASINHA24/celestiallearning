@@ -7,15 +7,15 @@
     
     if(isset($_POST['register']))
     {
-        echo $twig->render('register.html.twig', ['title' => 'Registration']);
+        echo $twig->render('subscriber/register.html.twig', ['title' => 'Registration']);
     }
     else if(isset($_POST['login']))
     {
-        echo $twig->render('login.html.twig', ['title' => 'login']);
+        echo $twig->render('subscriber/login.html.twig', ['title' => 'login']);
     }
     else if(isset($_POST['forget_password']))
     {
-        echo $twig->render('forgetpassword.html.twig', ['title' => 'Forget Password']);
+        echo $twig->render('subscriber/forgetpassword.html.twig', ['title' => 'Forget Password']);
     }
     else
     {

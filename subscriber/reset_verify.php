@@ -4,13 +4,13 @@
     if(!isset($_POST['new_pass'],$_POST['confirm_pass']))
     {
         $errors['not_set_error'] = 'Please enter password.';
-        //$twig->render('register.html.twig', array('errors'=> $errors));
+        //$twig->render('subscriber/register.html.twig', array('errors'=> $errors));
     }
 
     else if(empty($_POST['new_pass'])||empty($_POST['confirm_pass']))
     {    
         $errors['empty_error'] = 'Please complete the registration.';
-        //$twig->render('register.html.twig', array('errors'=> $errors));   
+        //$twig->render('subscriber/register.html.twig', array('errors'=> $errors));   
     }
     else
     {

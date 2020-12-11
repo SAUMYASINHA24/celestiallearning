@@ -7,6 +7,7 @@
     use Twig\Loader\FilesystemLoader;
     $loader = new FilesystemLoader('/var/www/celestiallearning/templates');
     $twig = new Environment($loader);
+    
     if(isset($_POST['submit']))
     {
 
@@ -42,20 +43,7 @@
 
                         if($status1=="Active")
                         {
-                            try
-                            {
-                                $stmt = $conn->prepare("DELETE FROM Verify WHERE Email = ?"); 
-                                $stmt->bind_param("s", $email);
-                                $stmt->execute(); 
-
-                                // INSERT VALUE TO SUBSCRIBERPROFILE TABLE   
-                                header('Location: dashboard.php');    
-                            }
-                            catch(Exception $e)
-                            {
-                                header('Location: dashboard.php');
-                            }
-                            
+                            header('Location : dashboard.php');
                         }
                         else
                         {
@@ -67,12 +55,12 @@
                 }
                 else
                 {
-                    echo $twig->render('login.html.twig', ['invalid_login' => "Incorrect username or password."]);
+                    echo $twig->render('subscriber/login.html.twig', ['invalid_login' => "Incorrect username or password."]);
                 }
             }
             else
             {
-                echo $twig->render('login.html.twig', ['invalid_login' => "Incorrect username or password."]);
+                echo $twig->render('subscriber/login.html.twig', ['invalid_login' => "Incorrect username or password."]);
             }
         }
 
