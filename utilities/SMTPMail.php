@@ -3,11 +3,9 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
     
-    function sendActivationMail($email, $username){
-        require 'vendor/autoload.php';
-
+    function sendActivationMail($email, $username, $role="subscriber"){
+        require "/var/www/celestiallearning/vendor/autoload.php";
         $mail = new PHPMailer(true);
-
         try {
             //Server settings
             $mail->SMTPDebug = 0;                      // Enable verbose debug output
@@ -22,7 +20,7 @@
             
             $db = Database::getInstance();
             $conn = $db->getConnection();
-
+            
             $stmt = $conn->prepare("INSERT INTO Verify VALUES(?,?,?,?)");
             
             $stmt->bind_param("ssss",$hash, $pin, $timestamp, $e);
@@ -32,8 +30,8 @@
             $timestamp = date("Y-m-d H:i:s", strtotime('1 hour'));  
             $e = $email;
             $stmt->execute();
-            //-------------------------
-            $actual_link = "http://www.celestiallearning.com/subscriber/verify.php?t=" . $hash;
+            
+            $actual_link = "http://www.celestiallearning.com/". $role ."/verify.php?t=" . $hash;
             //Recipients
             $mail->setFrom('noreply@celestiallearning.com', 'Celestial Learning');
             $mail->addAddress($email, $username);     // Add a recipient
@@ -49,14 +47,17 @@
             $mail->AltBody = 'PHP mailer';
         
             $mail->send();
+            return(true);
             
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            
+            return(false);
+            echo " eroror";
         }
     }
 
-    function sendForgetPasswordLink($email){
-        require 'vendor/autoload.php';
+    function sendForgetPasswordLink($email,$role="subscriber"){
+        require '/var/www/celestiallearning/vendor/autoload.php';
 
         $mail = new PHPMailer(true);
 
@@ -85,11 +86,11 @@
             $e = $email;
             $stmt->execute();
             //-------------------------
-            $actual_link = "http://www.celestiallearning.com/subscriber/forgetpasswordverify.php?t=" . $hash;
+            $actual_link = "http://www.celestiallearning.com/". $role ."/forgetpasswordverify.php?t=" . $hash;
             //Recipients
             $mail->setFrom('noreply@celestiallearning.com', 'Celestial Learning');
-            $mail->addAddress($email, $username);     // Add a recipient
-            $body  = "<h2>Hello " . $username . "</h2>";
+            $mail->addAddress($email);     // Add a recipient
+            $body  = "<h2>Hello " . "</h2>";
             $body .= "This is your One time password to reset your password. <b>". $pin ."</b><br>";
             $body .= "Click this link to reset password. <a href='" . $actual_link . "'>" . $actual_link . "</a>";
             // Content
@@ -101,13 +102,13 @@
             $mail->AltBody = 'PHP mailer';
         
             $mail->send();
+            return(true);
             
         } 
         catch (Exception $e)
         {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            
+            return(false);
         }
     }
-    
-    //sendActivationMail("vishalkale151071@gmail.com", "vishal");
 ?>

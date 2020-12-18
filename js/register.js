@@ -1,5 +1,7 @@
+
 function validation()
 {    
+    
     var error = [];
     var uname = document.getElementsByName("username")[0].value;
  

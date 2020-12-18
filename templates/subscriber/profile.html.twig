@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>Profile</title>
+</head>
+
+<body>
+    <form action="update.php" method=post>
+        <label for="ID">ID:</label>
+        <input type="text" id="ID" name="ID" readonly value={{profile.Email}} ><br><br>
+
+        <label for="First Name">First Name:</label>
+        <input type="text" id="FirstName" name="FirstName" value="{{profile.FirstName}}"><br><br>
+
+        <label for="MiddleName">Middle Name:</label>
+        <input type="text" id="MiddleName" name="MiddleName" value="{{profile.MiddleName}}"><br><br>
+
+        <label for="LastName">Last Name:</label>
+        <input type="text" id="LastName" name="LastName" value="{{profile.LastName}}"><br><br>
+
+        <label for="PhNum">Phone Num:</label>
+        <input type="text" id="PhNum" name="PhNum" value="{{profile.PhNum}}"><br><br>
+
+        <label for="LinkedInURL">LinkedIn URL:</label>
+        <input type="text" id="LinkedInURL" name="LinkedInURL" value="{{profile.LinkedInURL}}"><br><br>
+
+        <label for="TwitterURL">Twitter URL:</label>
+        <input type="text" id="TwitterURL" name="TwitterURL" value="{{profile.TwitterURL}}"><br><br>
+
+        <label for="HigherEducation">Higher Education:</label>
+        <input type="text" id="HigherEducation" name="HigherEducation" value="{{profile.HigherEducation}}"><br><br>
+
+        <label for="AreaOfInterest">Area Of Interest:</label>
+        <input type="text" id="AreaOfInterest" name="AreaOfInterest" value="{{profile.AreaOfInterest}}"><br><br>
+        <input type="submit" value="Update">
+    </form>
+</body>
+
+</html>

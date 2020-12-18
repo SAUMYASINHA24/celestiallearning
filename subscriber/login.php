@@ -1,14 +1,19 @@
 <?php
     session_start();
-    include "/var/www/celestiallearning/dbconnect.php";
-
+    include "/var/www/celestiallearning/utilities/dbconnect.php";
     require '/var/www/celestiallearning/vendor/autoload.php';
+    
     use Twig\Environment;
     use Twig\Loader\FilesystemLoader;
     $loader = new FilesystemLoader('/var/www/celestiallearning/templates');
     $twig = new Environment($loader);
-    if(isset($_POST['submit']))
+    if($_SERVER['REQUEST_METHOD']==='GET')
     {
+        echo $twig->render('subscriber/login.html.twig');
+    }
+    else if(isset($_POST['submit']))
+    {
+
         $db = Database::getInstance();
         $conn = $db->getConnection();
 
@@ -17,11 +22,10 @@
         $email = $_POST['email'];
         $stmt->execute();
         $result = $stmt->get_result();
-
         if($result)
         {
             $row_count = mysqli_num_rows($result);
-            //echo $row_count;
+            
             if ($row_count == 1)
             {
                 $row = $result->fetch_assoc();
@@ -29,7 +33,6 @@
                 $password = $_POST['password'];
                 if(password_verify($password, $hash))
                 {
-                    //echo "i am in part";
                     $_SESSION['email'] = $email;
                     $stmt = $conn->prepare("SELECT AccountStatus FROM Subscriber WHERE Email = ?");
                     $stmt->bind_param("s", $email);
@@ -38,27 +41,14 @@
                     $result = $stmt->get_result();
                     if($result)
                     {
-                        //echo " i am in another if";
                         $row_count2 = mysqli_num_rows($result);
-                        //echo $row_count2;
                         $status = $result->fetch_assoc();
                         $status1 = $status['AccountStatus'];
-                        //echo $status1;
+                        
                         if($status1=="Active")
                         {
-                            try
-                            {
-                                $stmt = $conn->prepare("DELETE FROM Verify WHERE Email = ?"); 
-                                $stmt->bind_param("s", $email);
-                                $stmt->execute(); 
-                                // INSERT VALUE TO SUBSCRIBERPROFILE TABLE   
-                                header('Location: dashboard.php');    
-                            }
-                            catch(Exception $e)
-                            {
-                                header('Location: dashboard.php');
-                            }
-                            
+                            header('Location: dashboard.php');
+                           
                         }
                         else
                         {
@@ -70,12 +60,12 @@
                 }
                 else
                 {
-                    echo $twig->render('login.html.twig', ['invalid_login' => "Incorrect username or password."]);
+                    echo $twig->render('subscriber/login.html.twig', ['invalid_login' => "Incorrect username or password."]);
                 }
             }
             else
             {
-                echo $twig->render('login.html.twig', ['invalid_login' => "Incorrect username or password."]);
+                echo $twig->render('subscriber/login.html.twig', ['invalid_login' => "Incorrect username or password."]);
             }
         }
 

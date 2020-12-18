@@ -5,7 +5,7 @@
     use Twig\Loader\FilesystemLoader;
     $loader = new FilesystemLoader('/var/www/celestiallearning/templates');
     $twig = new Environment($loader);
-    
+
     include "/var/www/celestiallearning/utilities/dbconnect.php";
     $db = Database::getInstance();      // Creating instance of Database
     $conn = $db->getConnection();
@@ -21,17 +21,12 @@
         $t = $result->fetch_assoc();
         if($t)
         {    
-            $stmt = $conn->prepare("UPDATE Subscriber SET AccountStatus = ? WHERE Email = ?");
+            $stmt = $conn->prepare("UPDATE Author SET AccountStatus = ? WHERE Email = ?");
             $stmt->bind_param("ss", $status, $email);
             $status = "Active";
             $email = $t['Email'];
-            $stmt->execute();
-            
-            $stmt = $conn->prepare("DELETE FROM Verify WHERE Email = ?");         
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            header('Location: login.php');
-            
+            $stmt->execute();    
+            echo $twig->render('author/login.html.twig'); 
         }
         else
         {
