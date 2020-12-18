@@ -7,10 +7,12 @@
     use Twig\Loader\FilesystemLoader;
     $loader = new FilesystemLoader('/var/www/celestiallearning/templates');
     $twig = new Environment($loader);
-    
-    if(isset($_POST['submit']))
+    if($_SERVER['REQUEST_METHOD'] === "GET")
     {
-
+        echo $twig->render("subscriber/login.html.twig");
+    }
+    else if(isset($_POST['submit']))
+    {   
         $db = Database::getInstance();
         $conn = $db->getConnection();
 
@@ -43,7 +45,7 @@
 
                         if($status1=="Active")
                         {
-                            header('Location : dashboard.php');
+                            header('Location: dashboard.php');
                         }
                         else
                         {

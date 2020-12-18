@@ -27,11 +27,11 @@
             $email = $t['Email'];
             $stmt->execute();
             
-            $stmt = $conn->prepare("DELETE FROM Verify WHERE Email = ?");
+            $stmt = $conn->prepare("DELETE FROM Verify WHERE Email = ?");         
             $stmt->bind_param("s", $email);
             $stmt->execute();
+            header('Location: login.php');
             
-            header('Location: login.html'); 
         }
         else
         {

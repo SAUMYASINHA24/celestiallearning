@@ -15,6 +15,9 @@
         if($t)
         { 
             $email = $t['Email'];
+            $stmt = $conn->prepare("DELETE FROM Verify WHERE Email = ?");         
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
             header('Location: reset_password.php?t1='.$email);
         }
         else
@@ -58,7 +61,7 @@
             if($t)
             {            
                 $old_time = date("Y-m-d H:i:s", strtotime($t['ExpiryTime'])); 
-                echo $old_time;
+                
                 if($old_time > date("Y-m-d H:i:s"))
                 {
 ?>

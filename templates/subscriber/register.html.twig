@@ -5,7 +5,7 @@
     </head>
     <body>   
         <h5 style="color:green;"> {{ activation_link }} </h5> 
-        <form action = "/var/www/celestiallearning/subscriber/register.php" name = "register_form" method = "POST" onsubmit="return validation()">
+        <form action = "register.php" name = "register_form" method = "POST" onsubmit="return validation()">
             Enter Username <input type = "text" name = "username" ><br><br>
             <h5 style="color:red;"> {{ errors.username_error }} </h5>
             Enter Email ID <input type = "text" name = "email" ><br><br>

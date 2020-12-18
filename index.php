@@ -5,17 +5,21 @@
     $loader = new FilesystemLoader('/var/www/celestiallearning/templates');
     $twig = new Environment($loader);
     
+   
     if(isset($_POST['register']))
     {
-        echo $twig->render('subscriber/register.html.twig', ['title' => 'Registration']);
+        
+        header("Location: subscriber/register.php");
     }
     else if(isset($_POST['login']))
     {
-        echo $twig->render('subscriber/login.html.twig', ['title' => 'login']);
+       
+        header("Location: subscriber/login.php");
     }
     else if(isset($_POST['forget_password']))
     {
-        echo $twig->render('subscriber/forgetpassword.html.twig', ['title' => 'Forget Password']);
+        
+        header("Location: subscriber/forgetpassword.php");
     }
     else
     {
