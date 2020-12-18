@@ -1,18 +1,10 @@
 <html>
     <head>
         <title>{{ title }}</title>
-<<<<<<< HEAD:templates/author/register.html.twig
-        <script type="text/javascript" src="js/register.js"></script>
+        <script type="text/javascript" src="../../js/register.js"></script>
     </head>
     <body>   
         <h5 style="color:green;"> {{ activation_link }} </h5> 
-=======
-        <script type="text/javascript" src="/var/www/celestiallearning/js/register.js"></script>
-    </head>
-    <body>   
-        <h5 style="color:green;"> {{ activation_link }} </h5> 
-        <h5 style="color:red;"> {{ saumya }} </h5>
->>>>>>> 58863b27e0f456741d4f92bb02569ed135ce1b31:templates/author/register.html.twig
         <form action = "register.php" name = "register_form" method = "POST" onsubmit="return validation()">
             Enter Username <input type = "text" name = "username" ><br><br>
             <h5 style="color:red;"> {{ errors.username_error }} </h5>

@@ -7,6 +7,7 @@
     use Twig\Loader\FilesystemLoader;
     $loader = new FilesystemLoader('/var/www/celestiallearning/templates');
     $twig = new Environment($loader);
+    
     if($_SERVER['REQUEST_METHOD'] === "GET")
     {
         echo $twig->render("subscriber/login.html.twig");
@@ -42,7 +43,6 @@
                         $row_count2 = mysqli_num_rows($result);
                         $status = $result->fetch_assoc();
                         $status1 = $status['AccountStatus'];
-
                         if($status1=="Active")
                         {
                             header('Location: dashboard.php');
@@ -51,9 +51,7 @@
                         {
                             echo "Please activate your account! An activation link has been sent to your registered email address.";
                         }
-                    }
-                    
-                    
+                    }                 
                 }
                 else
                 {
@@ -65,6 +63,5 @@
                 echo $twig->render('subscriber/login.html.twig', ['invalid_login' => "Incorrect username or password."]);
             }
         }
-
     }
 ?>
