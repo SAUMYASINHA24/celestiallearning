@@ -1,8 +1,6 @@
 <?php
-
-    include('/var/www/celestiallearning/utilities/dbconnect.php');
-
-    $id = $_POST['ID'];
+    session_start();
+    $id = $_SESSION['ID'];
     $FirstName = $_POST['FirstName'];
     $MiddleName = $_POST['MiddleName'];
     $LastName = $_POST['LastName'];
@@ -11,7 +9,8 @@
     $TwitterURL = $_POST['TwitterURL'];
     $HigherEducation = $_POST['HigherEducation'];
     $AreaOfInterest = $_POST['AreaOfInterest'];
-    
+
+    include('/var/www/celestiallearning/utilities/dbconnect.php');
     $db = Database::getInstance();
     $mysql = $db->getConnection();
 
