@@ -9,16 +9,20 @@
     {
         echo $twig->render('author/home.html.twig', ['title' => 'Author']);
     }
+    else if(isset($_POST['register']))
+    {
+        
+        header("Location: register.php");
+    }
     else if(isset($_POST['login']))
     {
-        echo $twig->render('author/login.html.twig', ['title' => 'login']);
+        
+        header("Location: login.php");
+
     }
     else if(isset($_POST['forget_password']))
     {
-        echo $twig->render('author/forgetpassword.html.twig', ['title' => 'Forget Password']);
-    }
-    else if(isset($_POST['register']))
-    {
-        echo $twig->render('author/register.html.twig', ['title' => 'Registration']);
-    }
+        
+        header("Location: forgetpassword.php");
+    }   
 ?>

@@ -89,7 +89,7 @@
                         $stmt = $conn->prepare("DELETE FROM Verify WHERE Email = ?");         
                         $stmt->bind_param("s", $emailid);    
                         $stmt->execute();
-                        //$errors['email_send_error']  = '';
+                        
                         echo $twig->render('subscriber/register.html.twig', ['email_send_error' => " Registration not completed. Kindly resend the link."]);
                         
                     }

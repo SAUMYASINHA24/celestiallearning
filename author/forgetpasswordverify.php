@@ -1,12 +1,5 @@
 <?php
-    /* Twig implementation*/
-    require '/var/www/celestiallearning/vendor/autoload.php';
-    use Twig\Environment;
-    use Twig\Loader\FilesystemLoader;
-    $loader = new FilesystemLoader('/var/www/celestiallearning/templates');
-    $twig = new Environment($loader);
-
-    include "/var/www/celestiallearning/utilities/dbconnect.php";
+	include "/var/www/celestiallearning/utilities/dbconnect.php";
     $db = Database::getInstance();      // Creating instance of Database
     $conn = $db->getConnection();
    
@@ -20,16 +13,12 @@
         $result = $stmt->get_result();
         $t = $result->fetch_assoc();
         if($t)
-        {    
-            $stmt = $conn->prepare("UPDATE Author SET AccountStatus = ? WHERE Email = ?");
-            $stmt->bind_param("ss", $status, $email);
-            $status = "Active";
+        { 
             $email = $t['Email'];
-            $stmt->execute();    
             $stmt = $conn->prepare("DELETE FROM Verify WHERE Email = ?");         
             $stmt->bind_param("s", $email);
             $stmt->execute();
-            header('Location: login.php');
+            header('Location: reset_password.php?t1='.$email);
         }
         else
         {
@@ -72,6 +61,7 @@
             if($t)
             {            
                 $old_time = date("Y-m-d H:i:s", strtotime($t['ExpiryTime'])); 
+                
                 if($old_time > date("Y-m-d H:i:s"))
                 {
 ?>
