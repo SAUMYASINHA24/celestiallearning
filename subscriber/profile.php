@@ -1,10 +1,9 @@
 <?php 
-include('/var/www/celestiallearning/utilities/dbconnect.php');
 session_start(); 
 require '/var/www/celestiallearning/vendor/autoload.php';
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-$loader = new FilesystemLoader('/var/www/celestiallearning/templates');
+$loader = new FilesystemLoader('/var/www/celestiallearning/templates/subscriber');
 $twig = new Environment($loader);
 ?>
 
@@ -18,6 +17,7 @@ $twig = new Environment($loader);
 
 <?php
 $profile = array();
+include('/var/www/celestiallearning/utilities/dbconnect.php');
 $db = Database::getInstance();
 $mysql = $db->getConnection();
 $email = $_SESSION['email'];
@@ -46,7 +46,7 @@ foreach($result1 as $row1)
 
 if($row_count1>0) //update
 {
-    $profile['ID'] = $row['ID'];
+    $_SESSION['ID'] = $row['ID'];
     $profile['Email'] = $email;
     $profile['FirstName'] = $row1['FirstName'];
     $profile['MiddleName'] = $row1['MiddleName'];
@@ -56,13 +56,13 @@ if($row_count1>0) //update
     $profile['TwitterURL'] = $row1['TwitterURL'];
     $profile['HigherEducation'] = $row1['HigherEducation'];
     $profile['AreaOfInterest'] = $row1['AreaOfInterest'];
-    echo $twig->render('subscriber/profile.html.twig',array('profile'=>$profile));
+    echo $twig->render('profile.html.twig',array('profile'=>$profile));
 }
 else
 {
-    $profile['ID'] = $row['ID'];
+    $_SESSION['ID'] = $row['ID'];
     $profile['Email'] = $email;
-    echo $twig->render('subscriber/profile.html.twig',array('profile'=>$profile));
+    echo $twig->render('profile.html.twig',array('profile'=>$profile));
 }
 ?>
 </body>
