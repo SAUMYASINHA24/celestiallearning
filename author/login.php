@@ -9,7 +9,7 @@
     $twig = new Environment($loader);
     if($_SERVER['REQUEST_METHOD']==='GET')
     {
-        echo $twig->render('subscriber/login.html.twig');
+        echo $twig->render('author/login.html.twig');
     }
     else if(isset($_POST['submit']))
     {
@@ -17,7 +17,7 @@
         $db = Database::getInstance();
         $conn = $db->getConnection();
 
-        $stmt = $conn->prepare("SELECT LoginPassword FROM Subscriber WHERE Email = ?");
+        $stmt = $conn->prepare("SELECT LoginPassword FROM Author WHERE Email = ?");         ///TABLE NAME CHNAGE KARNA HAI
         $stmt->bind_param("s", $email);
         $email = $_POST['email'];
         $stmt->execute();
@@ -34,7 +34,7 @@
                 if(password_verify($password, $hash))
                 {
                     $_SESSION['email'] = $email;
-                    $stmt = $conn->prepare("SELECT AccountStatus FROM Subscriber WHERE Email = ?");
+                    $stmt = $conn->prepare("SELECT AccountStatus FROM Author WHERE Email = ?");
                     $stmt->bind_param("s", $email);
                     $email = $_POST['email'];
                     $stmt->execute();
@@ -60,12 +60,12 @@
                 }
                 else
                 {
-                    echo $twig->render('subscriber/login.html.twig', ['invalid_login' => "Incorrect username or password."]);
+                    echo $twig->render('author/login.html.twig', ['invalid_login' => "Incorrect username or password."]);
                 }
             }
             else
             {
-                echo $twig->render('subscriber/login.html.twig', ['invalid_login' => "Incorrect username or password."]);
+                echo $twig->render('author/login.html.twig', ['invalid_login' => "Incorrect username or password."]);
             }
         }
 
